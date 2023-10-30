@@ -57,3 +57,5 @@ REVISION
 /mpc*
 /gmp*
 /isl*
+
+*.vscode
