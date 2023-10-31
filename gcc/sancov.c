@@ -249,7 +249,7 @@ instrument_switch (gimple_stmt_iterator *gsi, gimple *stmt, function *fun)
 
 #define SANCOV_FUNCHEADER 0x1
 #define SANCOV_FUNCIPT 0x2
-
+#define SANCOV_FUNCIPT_MASK 0xffffc
 unsigned
 sancov_pass (function *fun)
 {
@@ -259,7 +259,7 @@ sancov_pass (function *fun)
 		: "<unknown>"
   );
   basic_block first_bb = EDGE_SUCC(ENTRY_BLOCK_PTR_FOR_FN(fun),0)->dest;
-	fprintf (stderr, "func_name: %s\n", func_name);
+	// fprintf (stderr, "func_name: %s\n", func_name);
   // fprintf(stderr, "hello world!\n");
   // fprintf(stderr, "now table->size: %d\n", ipt_table->size);
   // for(int i=0;i<ipt_table->size;i++)
@@ -287,6 +287,8 @@ sancov_pass (function *fun)
         // fprintf(stderr, "%d.%s\n", i, ipt_table->func[i]);
         if(!strcmp(func_name, ipt_table->func[i])){
           flags = flags | SANCOV_FUNCIPT;
+          // add sancov funcipt idx mask
+          flags = flags | (i&SANCOV_FUNCIPT_MASK);
           // fprintf(stderr, "insert %d\n", flags);
         }
       }
