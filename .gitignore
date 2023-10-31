@@ -58,4 +58,10 @@ REVISION
 /gmp*
 /isl*
 
+# more
 *.vscode
+*.code
+*.jetbrains
+build-x86_64-pc-linux-gnu/
+host-x86_64-pc-linux-gnu/
+stage_*
