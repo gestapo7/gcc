@@ -59,7 +59,6 @@
 
 #if !SANITIZER_ANDROID
 #include <fstab.h>
-#include <sys/mount.h>
 #include <sys/timeb.h>
 #include <utmpx.h>
 #endif
